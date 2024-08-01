@@ -21,9 +21,9 @@ module "vpc" {             # Parent module
 module "web_server" {
   source = "./modules/ec2_instance"
 
-  ami_id             = "ami-03c7d01cf4dedc891"
+  ami_id             = "ami-0c11a84584d4e09dd"
   instance_type      = "t2.micro"
-  key_name           = "projectkeypair"
+  key_name           = "ohio"
   public_subnet_ids  = module.vpc.public_subnet_ids
   security_group_ids = [aws_security_group.ec2_sg.id]
   user_data          = file("apache.sh")
