@@ -11,7 +11,7 @@ terraform {
     organization = "aws-infrastructure"
 
     workspaces {
-      name = "two_tier_terraform"
+      name = "two-tier"
     }
   }
 }
@@ -19,3 +19,12 @@ terraform {
 provider "aws" {
   region = "us-east-2"
 }
+
+/*backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "aws-infrastructure"
+
+    workspaces {
+      name = "two-tier"
+    }
+  }*/
