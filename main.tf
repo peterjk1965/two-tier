@@ -12,7 +12,7 @@ module "vpc" {             # Parent module
   cidr_block                 = "10.0.0.0/16"
   public_subnet_cidr_blocks  = ["10.0.1.0/24", "10.0.2.0/24"]
   private_subnet_cidr_blocks = ["10.0.3.0/24", "10.0.4.0/24"]
-  availability_zones         = ["us-east-2a", "us-east-2b"]
+  availability_zones         = ["us-east-1a", "us-east-1b"]
 }
 
 #   Launch an EC2 Instance with Apache webserver in each 
@@ -21,9 +21,9 @@ module "vpc" {             # Parent module
 module "web_server" {
   source = "./modules/ec2_instance"
 
-  ami_id             = "ami-0c11a84584d4e09dd"
+  ami_id             = "ami-03c7d01cf4dedc891"
   instance_type      = "t2.micro"
-  key_name           = "ohio"
+  key_name           = "projectkeypair"
   public_subnet_ids  = module.vpc.public_subnet_ids
   security_group_ids = [aws_security_group.ec2_sg.id]
   user_data          = file("apache.sh")
@@ -36,7 +36,7 @@ module "mysql_db" {
 
   db_name             = "twotier"
   allocated_storage   = 10
-  instance_class      = "db.t3.micro"
+  instance_class      = "db.t2.micro"
   engine              = "mysql"
   engine_version      = "8.0"
   rds_username        = var.db_username

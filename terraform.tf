@@ -8,23 +8,14 @@ terraform {
 
   cloud {
     hostname     = "app.terraform.io"
-    organization = "PJK"
+    organization = "aws-infrastructure"
 
     workspaces {
-      name = "two-tier"
+      name = "two_tier_terraform"
     }
   }
 }
 
 provider "aws" {
-  region = "us-east-2"
+  region = "us-east-1"
 }
-
-/*backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "PJK"
-
-    workspaces {
-      name = "two-tier"
-    }
-  }*/
