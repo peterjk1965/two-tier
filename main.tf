@@ -36,7 +36,7 @@ module "mysql_db" {
 
   db_name             = "twotier"
   allocated_storage   = 10
-  instance_class      = "db.t2.micro"
+  instance_class      = "db.t3.micro"
   engine              = "mysql"
   engine_version      = "8.0"
   rds_username        = var.db_username
