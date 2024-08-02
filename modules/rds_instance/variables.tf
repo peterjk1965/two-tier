@@ -17,7 +17,7 @@ variable "allocated_storage" {
 variable "instance_class" {
   description = "The instance class for the RDS instance"
   type        = string
-  default     = "db.t2.micro"
+  default     = "db.t3.micro"
 }
 
 variable "db_name" {
