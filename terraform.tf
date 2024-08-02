@@ -8,10 +8,10 @@ terraform {
 
   cloud {
     hostname     = "app.terraform.io"
-    organization = "aws-infrastructure"
+    organization = "PJK"
 
     workspaces {
-      name = "two_tier_terraform"
+      name = "two-tier"
     }
   }
 }
