@@ -9,12 +9,13 @@ variable "instance_type" {
 variable "ami_id" {
   description = "AMI ID for EC2 instance"
   type        = string
-  default     = "ami-03c7d01cf4dedc891"
+  default     = "ami-0c11a84584d4e09dd"
 }
 
 variable "key_name" {
   description = "Name of key pair to use for EC2 instance"
   type        = string
+  default     = "ohio"
 }
 
 variable "security_group_ids" {

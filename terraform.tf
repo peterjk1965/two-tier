@@ -6,21 +6,7 @@ terraform {
     }
   }
 
-  /*cloud {
-    hostname     = "app.terraform.io"
-    organization = "aws-infrastructure"
-
-    workspaces {
-      name = "two-tier"
-    }
-  }
-}*/
-
-provider "aws" {
-  region = "us-east-2"
-}
-
-backend "remote" {
+  cloud {
     hostname     = "app.terraform.io"
     organization = "PJK"
 
@@ -28,3 +14,17 @@ backend "remote" {
       name = "two-tier"
     }
   }
+}
+
+provider "aws" {
+  region = "us-east-2"
+}
+
+/*backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "PJK"
+
+    workspaces {
+      name = "two-tier"
+    }
+  }*/
