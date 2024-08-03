@@ -23,7 +23,7 @@ module "web_server" {
 
   ami_id             = "ami-03c7d01cf4dedc891"
   instance_type      = "t2.micro"
-  key_name           = "projectkeypair"
+  key_name           = "ohio"
   public_subnet_ids  = module.vpc.public_subnet_ids
   security_group_ids = [aws_security_group.ec2_sg.id]
   user_data          = file("apache.sh")
