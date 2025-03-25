@@ -5,7 +5,7 @@ variable "az-1" {
 
 variable "ec2-ami" {
   type    = string
-  default = "ami-0a4387db64822e3c1"
+  default = "ami-0fc82f4dabc05670b"
 }
 
 variable "all-ipv4" {
@@ -20,7 +20,7 @@ variable "default-instance" {
 
 variable "my-ipv4" {
   type    = string
-  default = "69.136.168.38/32"
+  default = "24.1.237.243/32"
 }
 
 variable "key-name" {

@@ -13,8 +13,9 @@ provider "aws" {
   region                   = "us-east-2" # Replace with your desired AWS region
   shared_config_files      = ["~/.aws/config"]
   shared_credentials_files = ["~/.aws/credentials"]
-  profile                  = "terraform"
+  profile                  = "default"
 }
+
 
 # 1. Create a custom VPC
 resource "aws_vpc" "pjk-vpc" {
@@ -43,7 +44,7 @@ resource "aws_subnet" "public-subnet" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "public-subnet"
+    Name = "pjk-public-subnet"
   }
 }
 
@@ -53,13 +54,17 @@ resource "aws_subnet" "private-subnet" {
   availability_zone = var.az-1
 
   tags = {
-    Name = "private-subnet"
+    Name = "pjk-private-subnet"
   }
 }
 
 # 4. Create a NAT gateway
 resource "aws_eip" "elastic-ip" {
   vpc = true
+
+  tags = {
+    Name = "pjk-nat-eip"
+  }
 }
 
 resource "aws_nat_gateway" "nat-gw" {
@@ -67,7 +72,7 @@ resource "aws_nat_gateway" "nat-gw" {
   subnet_id     = aws_subnet.public-subnet.id
 
   tags = {
-    Name = "NAT Gateway"
+    Name = "pjk-NAT-Gateway"
   }
 
   depends_on = [aws_internet_gateway.igw]
@@ -83,7 +88,7 @@ resource "aws_route_table" "public-rt" {
   }
 
   tags = {
-    Name = "public-route-table"
+    Name = "pjk-public-route-table"
   }
 }
 
@@ -96,7 +101,7 @@ resource "aws_route_table" "private-rt" {
   }
 
   tags = {
-    Name = "private-route-table"
+    Name = "pjk-private-route-table"
   }
 }
 
@@ -122,7 +127,7 @@ resource "aws_security_group" "allow" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = [var.all-ipv4]
+    cidr_blocks = [var.my-ipv4]
   }
 
   ingress {
@@ -130,7 +135,7 @@ resource "aws_security_group" "allow" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = [var.all-ipv4]
+    cidr_blocks = [var.my-ipv4]
   }
 
   ingress {
@@ -138,7 +143,7 @@ resource "aws_security_group" "allow" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [var.all-ipv4]
+    cidr_blocks = [var.my-ipv4]
   }
 
   egress {
